@@ -5,7 +5,7 @@ library(knitr)
 library(rmarkdown)
 library(MatchIt)
 library(readxl)
-
+data<-read.delim("data.txt")
 data$CASTER_binary <- factor(data$CASTER_binary,levels=c(0,1),labels=c("Poor Responder",
                                                                    "Good Responder"))
 data$CASTER_binary<-factor(data$CASTER_binary,levels=c(levels(data$CASTER_binary),"P-value"))
