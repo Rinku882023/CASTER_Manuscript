@@ -1,0 +1,17 @@
+### Paired design LCL expression data Differential expression analysis
+
+library("limma")
+library("affy")
+load("LCLExp.Rdat")
+plotMDS(BSData.filter.list@assayData$exprs,col=as.numeric(BSData.filter.list$Hyb_Cond),xlab = "PC1", ylab = "PC2")
+legend("topright", legend=c("DEX", "SHAM"), col=1:2, pch=15)
+cond <- factor(pData(BSData.filter.list)[,"Hyb_Cond"])
+pheno <- factor(pData(BSData.filter.list)[,"Pheno_ID"])
+design <- model.matrix(~0+cond+pheno)
+contrasts <- makeContrasts(condDEX-condsham, levels=design)
+fit <- lmFit(exprs(BSData.filter.list), design)
+contr.fit <- eBayes(contrasts.fit(fit, contrasts))
+Result=topTable(contr.fit, coef=1,number="inf",adjust.method = "fdr")
+exprs=exprs(BSData.filter.list)
+write.table(Result,"limma_286sample.csv",sep=",")
+write.table(exprs,"Expression_286sample.csv",sep=",")
