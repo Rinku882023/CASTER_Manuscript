@@ -21,3 +21,20 @@ target$gender=as.factor(target$gender)
 dds <- DESeqDataSetFromMatrix(countData=round(rc), colData = target,design = ~ CASTER+age+gender)
 dds1 <- estimateSizeFactors(dds)
 norm <- data.frame(log2(counts(dds1, normalized=TRUE)[, 1:580] + 1))
+
+### Logistic Regression
+
+library(RegParallel)
+rlddata1 <- data.frame(target, t(norm))
+rlddata1$CASTER_a=as.factor(rlddata1$CASTER_a)
+rlddata1$gender=as.factor(rlddata1$gender)
+Result_lR <- RegParallel(
+data = rlddata1[ ,1:325],
+formula = 'CASTER_b ~ [*]+age+gender',
+FUN = function(formula, data)
+glm(formula = formula,
+data = data,
+family = binomial(link = 'logit')),
+FUNtype = 'glm',
+variables = colnames(rlddata1)[9:325],blocksize = 300,p.adjust = "fdr")
+write.table(Result_lR,"Result_LogisticRegression.csv",sep=",")
