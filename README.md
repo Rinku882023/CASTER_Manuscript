@@ -3,7 +3,7 @@
 
 **Summary**
 
-**"Systems Genomics Reveals microRNA Regulation of ICS Response in Childhood Asthma" (submitted: under review)**
+**"Systems Genomics Reveals microRNA Regulation of ICS Response in Childhood Asthma" (Published: PMID: 37296627)**
 
 The variability and difficulty in quantifying responses to inhaled corticosteroids (ICS) among asthmatic patients have been previously addressed by the development of a measure known as the Cross-sectional Asthma STEroid Response (CASTER) (Kho _et al._, 2020). MicroRNAs (miRNAs) have been found to have significant impacts on asthma and inflammatory processes. The objective of this study was to identify key association between circulating miRNAs and ICS response in childhood asthma.
 
